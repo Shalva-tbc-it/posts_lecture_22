@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="30dp"
+    android:layout_marginTop="14dp"
+    android:layout_marginEnd="30dp"
+    android:background="@drawable/img_corners"
+    android:padding="19dp">
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgOwner"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/Circular" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvOwnerFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/alice_smith"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tvPostDate"
+        app:layout_constraintStart_toEndOf="@id/imgOwner"
+        app:layout_constraintTop_toTopOf="@id/imgOwner" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPostDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:text="@string/_20_april_at_4_20_pm"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgOwner"
+        app:layout_constraintStart_toEndOf="@id/imgOwner"
+        app:layout_constraintTop_toBottomOf="@id/tvOwnerFullName" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:text="@string/we_re_interested_in_your_ideas_and_would_be_glad_to_build_something_bigger_out_of_it"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgOwner" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgMainCover"
+        android:layout_width="133dp"
+        android:layout_height="154dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDesc"
+        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgTopCover"
+        android:layout_width="133dp"
+        android:scaleType="centerCrop"
+        android:layout_height="71dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgMainCover"
+        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgBottomCover"
+        android:layout_width="133dp"
+        android:layout_height="71dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@id/imgMainCover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgTopLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/imgMainCover" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:src="@drawable/ic_comment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgTopLine" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:text="@string/comments"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgComment"
+        app:layout_constraintStart_toEndOf="@id/imgComment"
+        app:layout_constraintTop_toTopOf="@id/imgComment" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="9dp"
+        android:src="@drawable/ic_like"
+        app:layout_constraintEnd_toStartOf="@id/tvLikes"
+        app:layout_constraintTop_toBottomOf="@id/imgTopLine" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:text="@string/likes"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgLikes"
+        app:layout_constraintEnd_toStartOf="@id/imgShare"
+        app:layout_constraintStart_toEndOf="@id/tvComments"
+        app:layout_constraintTop_toTopOf="@id/imgLikes" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="9dp"
+        android:src="@drawable/ic_like"
+        app:layout_constraintEnd_toStartOf="@id/tvShare"
+        app:layout_constraintTop_toBottomOf="@id/imgTopLine" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:text="@string/share"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgShare"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imgShare" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgBottomLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/tvComments" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgCommentOwner"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgBottomLine"
+        app:shapeAppearanceOverlay="@style/Circular" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edComment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:drawableEnd="@drawable/ic_attach"
+        android:hint="@string/write_comment"
+        android:paddingStart="16dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="10dp"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/imgCommentOwner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgCommentOwner"
+        app:layout_constraintTop_toTopOf="@id/imgCommentOwner" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
