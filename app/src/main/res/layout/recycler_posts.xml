@@ -3,17 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="30dp"
     android:layout_marginTop="14dp"
-    android:layout_marginEnd="30dp"
     android:background="@drawable/img_corners"
     android:padding="19dp">
-
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgOwner"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/Circular" />
@@ -22,7 +20,6 @@
         android:id="@+id/tvOwnerFullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
         android:text="@string/alice_smith"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -35,12 +32,11 @@
         android:id="@+id/tvPostDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
         android:text="@string/_20_april_at_4_20_pm"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/imgOwner"
-        app:layout_constraintStart_toEndOf="@id/imgOwner"
+        app:layout_constraintStart_toStartOf="@id/tvOwnerFullName"
         app:layout_constraintTop_toBottomOf="@id/tvOwnerFullName" />
 
 
@@ -49,39 +45,43 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/we_re_interested_in_your_ideas_and_would_be_glad_to_build_something_bigger_out_of_it"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgOwner" />
+        app:layout_constraintTop_toBottomOf="@id/tvPostDate" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgMainCover"
-        android:layout_width="133dp"
+        android:layout_width="0dp"
         android:layout_height="154dp"
-        android:scaleType="centerCrop"
         android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@id/imgTopCover"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDesc"
         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgTopCover"
-        android:layout_width="133dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:layout_height="71dp"
+        app:layout_constraintBottom_toTopOf="@id/imgBottomCover"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgMainCover"
         app:layout_constraintTop_toTopOf="@id/imgMainCover"
         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgBottomCover"
-        android:layout_width="133dp"
+        android:layout_width="0dp"
         android:layout_height="71dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@id/imgMainCover"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/imgTopCover"
         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
 
@@ -103,15 +103,28 @@
         app:layout_constraintTop_toBottomOf="@id/imgTopLine" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvCommentsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:text="7"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgComment"
+        app:layout_constraintEnd_toStartOf="@id/tvComments"
+        app:layout_constraintStart_toEndOf="@id/imgComment"
+        app:layout_constraintTop_toTopOf="@id/imgComment" />
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvComments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
+        android:layout_marginStart="2dp"
         android:text="@string/comments"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/imgComment"
-        app:layout_constraintStart_toEndOf="@id/imgComment"
+        app:layout_constraintStart_toEndOf="@id/tvCommentsCount"
         app:layout_constraintTop_toTopOf="@id/imgComment" />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -120,16 +133,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="18dp"
-        android:layout_marginEnd="9dp"
+        android:layout_marginEnd="5dp"
         android:src="@drawable/ic_like"
-        app:layout_constraintEnd_toStartOf="@id/tvLikes"
+        app:layout_constraintEnd_toStartOf="@id/tvLikesCount"
         app:layout_constraintTop_toBottomOf="@id/imgTopLine" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLikesCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:text="7"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imgLikes"
+        app:layout_constraintEnd_toStartOf="@id/tvLikes"
+        app:layout_constraintTop_toTopOf="@id/imgLikes" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
         android:text="@string/likes"
         android:textColor="@color/white"
         android:textSize="14sp"
@@ -145,9 +169,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="9dp"
-        android:src="@drawable/ic_like"
+        android:src="@drawable/ic_share"
         app:layout_constraintEnd_toStartOf="@id/tvShare"
         app:layout_constraintTop_toBottomOf="@id/imgTopLine" />
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvShare"
@@ -169,21 +194,13 @@
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/tvComments" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imgCommentOwner"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imgBottomLine"
-        app:shapeAppearanceOverlay="@style/Circular" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edComment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ed_corners"
         android:drawableEnd="@drawable/ic_attach"
         android:hint="@string/write_comment"
         android:paddingStart="16dp"
@@ -191,10 +208,9 @@
         android:paddingEnd="12dp"
         android:paddingBottom="10dp"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@id/imgCommentOwner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imgCommentOwner"
-        app:layout_constraintTop_toTopOf="@id/imgCommentOwner" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgBottomLine" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,8 +8,9 @@ import com.example.posts.domain.usecase.GetStoriesUseCase
 import com.example.posts.presentation.event.HomeEvent
 import com.example.posts.presentation.mapper.post.toPresentation
 import com.example.posts.presentation.mapper.toPresentation
-import com.example.posts.presentation.state.PostsState
-import com.example.posts.presentation.state.StoriesState
+import com.example.posts.presentation.model.Stories
+import com.example.posts.presentation.model.post.Posts
+import com.example.posts.presentation.state.ResourceState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -21,16 +22,15 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
 
-    private val getStoriesUseCase: GetStoriesUseCase,
-    private val getPostsUseCase: GetPostsUseCase
+    private val getStoriesUseCase: GetStoriesUseCase, private val getPostsUseCase: GetPostsUseCase
 
-): ViewModel() {
+) : ViewModel() {
 
-    private val _storiesState = MutableStateFlow(StoriesState())
-    val storiesState: SharedFlow<StoriesState> = _storiesState.asStateFlow()
+    private val _storiesState = MutableStateFlow(ResourceState<Stories>())
+    val storiesState: SharedFlow<ResourceState<Stories>> = _storiesState.asStateFlow()
 
-    private val _postsState = MutableStateFlow(PostsState())
-    val postsState: SharedFlow<PostsState> = _postsState.asStateFlow()
+    private val _postsState = MutableStateFlow(ResourceState<Posts>())
+    val postsState: SharedFlow<ResourceState<Posts>> = _postsState.asStateFlow()
 
 
     fun onEvent(event: HomeEvent) {
@@ -52,15 +52,15 @@ class HomeViewModel @Inject constructor(
                             )
                         }
                     }
+
                     is Resource.Success -> {
                         _storiesState.update { state ->
-                            state.copy(
-                                data = resource.data.map {
-                                    it.toPresentation()
-                                }
-                            )
+                            state.copy(data = resource.data.map {
+                                it.toPresentation()
+                            })
                         }
                     }
+
                     is Resource.Error -> updateErrorMessage(message = resource.errorMessage)
                 }
             }
@@ -78,15 +78,15 @@ class HomeViewModel @Inject constructor(
                             )
                         }
                     }
+
                     is Resource.Success -> {
                         _postsState.update { state ->
-                            state.copy(
-                                data = resource.data.map {
-                                    it.toPresentation()
-                                }
-                            )
+                            state.copy(data = resource.data.map {
+                                it.toPresentation()
+                            })
                         }
                     }
+
                     is Resource.Error -> updateErrorMessage(message = resource.errorMessage)
                 }
             }

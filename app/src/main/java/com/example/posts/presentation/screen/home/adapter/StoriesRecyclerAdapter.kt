@@ -9,9 +9,11 @@ import com.example.posts.databinding.RecyclerStoriesBinding
 import com.example.posts.presentation.extension.loadImage
 import com.example.posts.presentation.model.Stories
 
-class StoriesRecyclerAdapter : ListAdapter<Stories, StoriesRecyclerAdapter.StoriesViewHolder>(StoriesDiffUtil()) {
+class StoriesRecyclerAdapter :
+    ListAdapter<Stories, StoriesRecyclerAdapter.StoriesViewHolder>(StoriesDiffUtil()) {
 
-    inner class StoriesViewHolder(private val binding: RecyclerStoriesBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class StoriesViewHolder(private val binding: RecyclerStoriesBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind() = with(binding) {
 
             val item = currentList[adapterPosition]
@@ -26,9 +28,7 @@ class StoriesRecyclerAdapter : ListAdapter<Stories, StoriesRecyclerAdapter.Stori
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoriesViewHolder {
         return StoriesViewHolder(
             RecyclerStoriesBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
         )
     }

@@ -1,5 +1,6 @@
 package com.example.posts.presentation.screen.home
 
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -9,10 +10,11 @@ import com.example.posts.databinding.FragmentHomeBinding
 import com.example.posts.presentation.common.base.BaseFragment
 import com.example.posts.presentation.event.HomeEvent
 import com.example.posts.presentation.extension.showSnackBar
+import com.example.posts.presentation.model.Stories
+import com.example.posts.presentation.model.post.Posts
 import com.example.posts.presentation.screen.home.adapter.PostsRecyclerAdapter
 import com.example.posts.presentation.screen.home.adapter.StoriesRecyclerAdapter
-import com.example.posts.presentation.state.PostsState
-import com.example.posts.presentation.state.StoriesState
+import com.example.posts.presentation.state.ResourceState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -60,7 +62,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     private fun bindAdapter() {
         storiesAdapter = StoriesRecyclerAdapter()
-        binding.recyclerStories.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerStories.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerStories.adapter = storiesAdapter
 
         postsAdapter = PostsRecyclerAdapter()
@@ -68,9 +71,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         binding.recyclerPosts.adapter = postsAdapter
     }
 
-    private fun handlePosts(state: PostsState) {
-//        binding.loaderInclude.loaderContainer.visibility =
-//            if (state.isLoading) View.VISIBLE else View.GONE
+    private fun handlePosts(state: ResourceState<Posts>) {
+        binding.progressBar.visibility =
+            if (state.isLoading) View.VISIBLE else View.GONE
 
         state.data?.let {
             postsAdapter.submitList(it)
@@ -83,9 +86,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     }
 
-    private fun handleStories(state: StoriesState) {
-//        binding.loaderInclude.loaderContainer.visibility =
-//            if (state.isLoading) View.VISIBLE else View.GONE
+    private fun handleStories(state: ResourceState<Stories>) {
+        binding.progressBar.visibility =
+            if (state.isLoading) View.VISIBLE else View.GONE
 
         state.data?.let {
             storiesAdapter.submitList(it)

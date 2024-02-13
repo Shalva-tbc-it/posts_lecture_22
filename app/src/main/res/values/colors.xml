@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="main_bg">#21323A</color>
     <color name="img_bg">#30444E</color>
+    <color name="ed_bg">#2A3C44</color>
 </resources>
