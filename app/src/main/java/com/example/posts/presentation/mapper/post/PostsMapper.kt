@@ -2,6 +2,7 @@ package com.example.posts.presentation.mapper.post
 
 import com.example.posts.domain.model.post.GetOwner
 import com.example.posts.domain.model.post.GetPosts
+import com.example.posts.presentation.extension.toFormattedDate
 import com.example.posts.presentation.model.post.Owner
 import com.example.posts.presentation.model.post.Posts
 
@@ -22,6 +23,6 @@ fun GetOwner.toPresentation() =
         firstName = firstName,
         lastName = lastName,
         profile = profile,
-        postDate = postDate
+        postDate = postDate.toFormattedDate()
 
     )

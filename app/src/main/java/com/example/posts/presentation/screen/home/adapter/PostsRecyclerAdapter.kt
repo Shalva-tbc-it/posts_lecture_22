@@ -12,26 +12,36 @@ import com.example.posts.databinding.RecyclerPostsBinding
 import com.example.posts.presentation.extension.loadImage
 import com.example.posts.presentation.extension.setVisibilityAndMargins
 import com.example.posts.presentation.model.post.Posts
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 
 class PostsRecyclerAdapter :
     ListAdapter<Posts, PostsRecyclerAdapter.PostsViewHolder>(PostsDiffUtil()) {
+
+    private var onItemClickListener: ((Posts) -> Unit)? = null
+
     inner class PostsViewHolder(private val binding: RecyclerPostsBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+
+
         fun bind() = with(binding) {
             val item = currentList[adapterPosition]
 
             "${item.owner.firstName}  ${item.owner.lastName}".also { tvOwnerFullName.text = it }
             imgOwner.loadImage(item.owner.profile)
-            tvPostDate.text = convertToDate(item.owner.postDate)
+            tvPostDate.text = item.owner.postDate
             tvDesc.text = item.shareContent
             imgMainCover.loadImage(getImageAtIndex(item, 0))
             imgTopCover.loadImage(getImageAtIndex(item, 1))
             imgBottomCover.loadImage(getImageAtIndex(item, 2))
             tvCommentsCount.text = item.comments.toString()
             tvLikesCount.text = item.likes.toString()
+
+            root.setOnClickListener {
+                onItemClickListener?.let {
+                    it.invoke(item)
+                }
+            }
+
             if (item.owner.profile == null) {
                 imgOwner.visibility = View.GONE
             }
@@ -79,11 +89,10 @@ class PostsRecyclerAdapter :
             return item.images?.getOrNull(index)
         }
 
-        private fun convertToDate(timestamp: Long): String {
-            val date = Date(timestamp * 1000)
-            val getDate = SimpleDateFormat("dd MMMM 'at' h:mm a", Locale.getDefault())
-            return getDate.format(date)
-        }
+    }
+
+    fun setOnItemClickListener(listener: (Posts) -> Unit) {
+        onItemClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostsViewHolder {

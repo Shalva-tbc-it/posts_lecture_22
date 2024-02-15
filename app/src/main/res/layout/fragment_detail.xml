@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="14dp"
+    android:layout_height="match_parent"
     android:background="@drawable/img_corners"
     android:padding="19dp"
     app:layout_constraintEnd_toEndOf="parent"
@@ -15,6 +14,7 @@
         android:id="@+id/imgOwner"
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:visibility="gone"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -58,36 +58,13 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgMainCover"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="154dp"
         android:layout_marginTop="10dp"
         android:scaleType="centerCrop"
-        app:layout_constraintEnd_toStartOf="@id/imgTopCover"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDesc"
         app:shapeAppearanceOverlay="@style/RoundedSquare" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imgTopCover"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@id/imgBottomCover"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imgMainCover"
-        app:layout_constraintTop_toTopOf="@id/imgMainCover"
-        app:shapeAppearanceOverlay="@style/RoundedSquare" />
-
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imgBottomCover"
-        android:layout_width="0dp"
-        android:layout_height="71dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@id/imgMainCover"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/imgTopCover"
-        app:shapeAppearanceOverlay="@style/RoundedSquare" />
-
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgTopLine"
@@ -215,5 +192,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgBottomLine" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.posts.databinding.FragmentHomeBinding
 import com.example.posts.presentation.common.base.BaseFragment
@@ -28,10 +29,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun bind() {
         bindAdapter()
         events()
+
+
     }
 
     override fun bindViewActionListener() {
-
+        adapterListener()
     }
 
     override fun bindObserves() {
@@ -53,6 +56,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     }
 
+    private fun adapterListener() {
+        postsAdapter.setOnItemClickListener(
+            listener = {
+                findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.id)
+                )
+            }
+        )
+    }
+
     private fun events() {
         viewModel.onEvent(HomeEvent.GetStoriesData)
         viewModel.onEvent(HomeEvent.GetPostsData)
@@ -61,6 +74,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
 
     private fun bindAdapter() {
+
         storiesAdapter = StoriesRecyclerAdapter()
         binding.recyclerStories.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -77,6 +91,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         state.data?.let {
             postsAdapter.submitList(it)
+
         }
 
         state.errorMessage?.let {
@@ -92,6 +107,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         state.data?.let {
             storiesAdapter.submitList(it)
+
         }
 
         state.errorMessage?.let {
